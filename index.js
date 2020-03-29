@@ -20,12 +20,14 @@ document.addEventListener("DOMContentLoaded", function(){
 
         function setVideoPlay(){
             console.log (videoButton.style)
-            videoButton.style.visibility = 'none';
+            videoButton.style.display = 'none';
             videoElement.style.display = 'block';
+            videoPreview.style.display = 'none';
             videoElement.play();
         }
 
-        let videoButton = document.querySelector("video-play a");
+        let videoButton = document.querySelector(".video-play a");
+        let videoPreview = document.querySelector(".works-content img");
         videoButton.addEventListener("click", setVideoPlay);
 
 });

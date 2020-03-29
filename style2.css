@@ -96,7 +96,6 @@ header.scrolling .menu-link.active {
 
 #home {
     background-image: url(Rectangle.png);
-    height: 100vh;
 }
 
 #home .blue-button {
@@ -179,8 +178,6 @@ header.scrolling .menu-link.active {
 
 #works {
     background-image: url(Rectangle.png);
-    background-position: 100% 120%;
-    background-repeat: no-repeat;
 }
 
 /* VIDEO */
