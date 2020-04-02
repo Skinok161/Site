@@ -1,4 +1,32 @@
 document.addEventListener("DOMContentLoaded", function(){
+    
+    //flow scroll
+    const links = document.querySelectorAll('header a[href*="#"]');
+    
+    function cleanActiveLinks(){
+        const parentsLinks = document.getElementsByClassName("menu-link");
+        for (let parent of parentsLinks){
+            parent.classList.remove('active');
+        }
+    }
+
+    document.addEventListener('wheel', cleanActiveLinks);
+
+    for (let link of links) {
+        console.log (link);
+        link.addEventListener('click', function(){
+            event.preventDefault();
+            const id = link.getAttribute('href').substr(1);
+            document.getElementById(id).scrollIntoView({
+                block: 'center',
+                behavior: 'smooth'
+            });
+
+            cleanActiveLinks();
+            event.target.closest('div').classList.add('active');
+        });
+    }
+
     function changeHeader(){
         console.log("scrolling", window.scrollY);
         let headerClasses = document.getElementsByTagName("header")[0].classList;
@@ -30,4 +58,35 @@ document.addEventListener("DOMContentLoaded", function(){
         let videoPreview = document.querySelector(".works-content img");
         videoButton.addEventListener("click", setVideoPlay);
 
+
+        //email
+
+        function validEmail(value) {
+            const isValidEmail = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value);
+            let errorElement = document.getElementsByClassName('error')[0];
+            if (isValidEmail) {
+                errorElement.style.display = 'none';
+            } else {
+                errorElement.style.display = 'block';
+            }
+            return isValidEmail;
+        }
+        let emailInput = document.getElementsByTagName("input")[0];
+        console.log(emailInput);
+        if (emailInput) {
+            emailInput.addEventListener('input', function(event) {
+                validEmail(event.target.value);
+            });
+        }
+        let emailButton = document.querySelectorAll('.email-content button')[0];
+        if (emailButton) {
+            emailButton.addEventListener('click', function () {
+                console.log(emailInput.value)
+                
+                const isValidEmail = validEmail(emailInput.value);
+                if (isValidEmail){
+                    //request to server
+                }
+            });
+        }
 });
